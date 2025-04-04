@@ -27,3 +27,9 @@ python manage.py runserver
 ~~~~
 pip install -r dependencies.txt
 ~~~~
+
+### Problemas
+Si el entorno virtual da problemas, usar la instalación local
+~~~~
+pip install --break-system-packages django
+~~~~
