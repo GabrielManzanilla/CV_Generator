@@ -10,12 +10,20 @@ _Linux_̣
 ~~~
 source .venv/bin/activate
 ~~~
+pip freeze >dependencies.txt
+
 _Windows_̣
 ~~~
-./.venv/bin/Activate.ps1
+venv\Scripts\Activate.ps1
 ~~~
 
-###Ejecucion de entorno
+### Ejecucion de entorno
 ~~~
 python manage.py runserver
 ~~~
+
+
+### INstalacion requeierements
+~~~~
+pip install -r requirements.txt
+~~~~
