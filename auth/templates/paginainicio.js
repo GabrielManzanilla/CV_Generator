@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/fireba
 import {getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import{getFirestore, getDoc, doc} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"
 
-// Configuración de Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyC0cT5NSwaVEea2alSgbY0VIpkFvCdKZ88",
     authDomain: "cv-generator1.firebaseapp.com",
@@ -12,49 +11,33 @@ const firebaseConfig = {
     appId: "1:450931232331:web:3b9c0ee2210553420147ce",
     measurementId: "G-17RBTHEXTP"
 };
-// Inicialización de Firebase
-const app = initializeApp(firebaseConfig);
+ 
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
-const db = getFirestore();
+  const auth=getAuth();
+  const db=getFirestore();
 
-// Verifica el estado de autenticación del usuario
-onAuthStateChanged(auth, (user) => {
-    const loggedInUserId = localStorage.getItem('loggedInUserId');
-    if (loggedInUserId) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
         console.log("Usuario autenticado:", user);
-        const docRef = doc(db, "users", loggedInUserId);
-        getDoc(docRef)
-            .then((docSnap) => {
-                if (docSnap.exists()) {
-                    const userData = docSnap.data();
-                    // Actualiza la interfaz con los datos del usuario
-                    document.getElementById('loggedUserFName').innerText = userData.firstName;
-                    document.getElementById('loggedUserEmail').innerText = userData.email;
-                    document.getElementById('loggedUserLName').innerText = userData.lastName;
-                } else {
-                    console.error("No se encontró un documento que coincida con el ID proporcionado.");
-                }
-            })
-            .catch((error) => {
-                console.error("Error al obtener el documento:", error);
-            });
+        // Muestra el correo del usuario autenticado
+        document.getElementById('loggedUserEmail').innerText = user.email;
     } else {
-        console.warn("ID de usuario no encontrado en el almacenamiento local.");
+        console.log("No hay usuario autenticado.");
+        window.location.href = 'login.html'; // Redirige al login si no hay usuario
     }
 });
 
-// Manejo del botón de cierre de sesión
-const logoutButton = document.getElementById('logout');
+  const logoutButton=document.getElementById('logout');
 
-logoutButton.addEventListener('click', () => {
-    localStorage.removeItem('loggedInUserId');
+  logoutButton.addEventListener('click',()=>{
     signOut(auth)
-        .then(() => {
-            console.log("Cierre de sesión exitoso.");
-            window.location.href = 'login.html';
-        })
-        .catch((error) => {
-            console.error("Error al cerrar sesión:", error);
-        });
-});
+    .then(()=>{
+        console.log("Cierre de sesión exitoso.");
+        window.location.href='login.html';
+    })
+    .catch((error)=>{
+        console.error('Error al cerrar sesión:', error);
+    })
+  })
