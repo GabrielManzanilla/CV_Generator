@@ -14,7 +14,7 @@ pip freeze >dependencies.txt
 
 _Windows_̣
 ~~~
-venv\Scripts\Activate.ps1
+.venv_windows\Scripts\Activate.ps1
 ~~~
 
 ### Ejecucion de entorno
@@ -25,5 +25,5 @@ python manage.py runserver
 
 ### INstalacion requeierements
 ~~~~
-pip install -r requirements.txt
+pip install -r dependencies.txt
 ~~~~
