@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <title>Formulario de Información</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            padding: 0% 5rem;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            height: 90%;
+            width: 100%;
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            margin: 2rem 0;
+            display: none;
+            gap: 1rem;
+            animation: fadeIn 0.5s ease;
+        }
+        .container.active {
+            display: flex;
+        }
+        .description {
+            flex-grow: 0;
+        }
+        .input-container {
+            display: flex;
+            padding: 0.5rem;
+            flex-direction: column;
+            width: 100%;
+            border: 2px solid #000;
+            border-radius: 10px;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+        .container textarea {
+            border: none;
+            border-radius: inherit;
+            flex-grow: 1;
+            overflow-y: scroll;
+            resize: none;
+            padding: 1rem;
+            font-size: 1rem;
+            outline: none;
+            width: calc(100% - 2rem);
+        }
+        .input_aditionals {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            padding: 0.5rem;
+        }
+        .material-symbols-outlined {
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        .material-symbols-outlined:hover {
+            background-color: #f0f0f0;
+        }
+        .navigation {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .container button, .container input[type="submit"] {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            width: auto;
+            margin: 0 0.5rem;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .container button:hover, .container input[type="submit"]:hover {
+            background-color: #333;
+        }
+        .container button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        .progress-step {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ddd;
+            position: relative;
+        }
+        .progress-step.active {
+            background-color: #000;
+        }
+        .progress-step.completed {
+            background-color: #4CAF50;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <form id="multiStepForm" method="post" action="{% url 'request_info' %}">
+
+			{% csrf_token %}
+        <!-- Indicador de progreso -->
+        <div class="progress-indicator">
+            <div class="progress-step active" data-step="0"></div>
+            <div class="progress-step" data-step="1"></div>
+            <div class="progress-step" data-step="2"></div>
+        </div>
+
+        <!-- Paso 1 -->
+        <div class="container active" data-step="0">
+            <div class="description">
+                <h1>Ingrese su información</h1>
+                <p>Por favor proporcione sus datos personales básicos para comenzar el proceso. Esta información nos ayudará a conocerlo mejor.</p>
+            </div>
+            <div class="input-container">
+                <textarea name="personal_info" placeholder="Escriba aquí su información personal..." id="personal_info" required></textarea>
+                <div class="input_aditionals"> 
+                    <span class="material-symbols-outlined" title="Adjuntar archivo">
+                        attach_file
+                    </span>
+                    <span class="material-symbols-outlined" title="Grabar audio">
+                        mic
+                    </span>
+                </div>
+            </div>
+            <div class="navigation">
+                <button type="button" disabled>Anterior</button>
+                <button type="button" class="next-btn">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- Paso 2 -->
+        <div class="container" data-step="1">
+            <h1>Ingrese sus Áreas de Mejora</h1>
+            <p>Describa las habilidades o conocimientos que desea mejorar. Esta información nos ayudará a personalizar su experiencia.</p>
+            <div class="input-container">
+                <textarea name="personal_fixes" placeholder="Enumere sus áreas de mejora..." id="personal_fixes" required></textarea>
+            </div>
+            <div class="navigation">
+                <button type="button" class="prev-btn">Anterior</button>
+                <button type="button" class="next-btn">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- Paso 3 -->
+        <div class="container" data-step="2">
+            <h1>Descripción del puesto/empresa al que aspira</h1>
+            <p>Proporcione detalles sobre el tipo de trabajo o empresa que busca. Cuanto más específico sea, mejor podremos ayudarle.</p>
+            <div class="input-container">
+                <textarea name="info_vacancy" placeholder="Describa el puesto o empresa ideal..." id="info_vacancy" required></textarea>
+            </div>
+            <div class="navigation">
+                <button type="button" class="prev-btn">Anterior</button>
+                <input type="submit" value="Enviar">
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('multiStepForm');
+            const containers = document.querySelectorAll('.container');
+            const nextButtons = document.querySelectorAll('.next-btn');
+            const prevButtons = document.querySelectorAll('.prev-btn');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            let currentStep = 0;
+
+            // Mostrar solo el primer paso al cargar
+            showStep(currentStep);
+
+            // Event listeners para botones Siguiente
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (validateStep(currentStep)) {
+                        currentStep++;
+                        showStep(currentStep);
+                        updateProgress();
+                    }
+                });
+            });
+
+            // Event listeners para botones Anterior
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    currentStep--;
+                    showStep(currentStep);
+                    updateProgress();
+                });
+            });
+
+            // Validar campos antes de enviar
+            form.addEventListener('submit', function(e) {
+                if (validateStep(currentStep)) {
+                    // Aquí puedes agregar el código para enviar el formulario
+
+                    console.log('Datos del formulario:', {
+                        personal_info: form.personal_info.value,
+                        improvement_areas: form.improvement_areas.value,
+                        job_description: form.job_description.value
+                    });
+                    
+                    // Simular envío (remover en producción)
+                    form.reset();
+                    currentStep = 0;
+                    showStep(currentStep);
+                    updateProgress();
+                }
+            });
+
+            // Función para mostrar el paso actual
+            function showStep(step) {
+                containers.forEach((container, index) => {
+                    container.classList.toggle('active', index === step);
+                });
+            }
+
+            // Función para actualizar el indicador de progreso
+            function updateProgress() {
+                progressSteps.forEach((step, index) => {
+                    step.classList.remove('active', 'completed');
+                    
+                    if (index < currentStep) {
+                        step.classList.add('completed');
+                    } else if (index === currentStep) {
+                        step.classList.add('active');
+                    }
+                });
+            }
+
+            // Función para validar el paso actual
+            function validateStep(step) {
+                const currentContainer = containers[step];
+                const textarea = currentContainer.querySelector('textarea');
+                
+                if (textarea && textarea.required && !textarea.value.trim()) {
+                    alert('Por favor complete este campo antes de continuar.');
+                    textarea.focus();
+                    return false;
+                }
+                
+                return true;
+            }
+        });
+    </script>
+</body>
+</html>
