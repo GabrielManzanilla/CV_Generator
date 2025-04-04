@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro e inicio de sesión</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="./script.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro e inicio de sesión</title>
-  <link rel="stylesheet" href="styles.css">
-  <script type="module" src="./script.js"></script>
-</head>
+  <body>
+    <div class="div-1200">
 
-<body>
-  <div class="div-1200">
-
-    <img src="./imgs/RODAI.png" alt="imagen de empresa RODAI" class="img-center">
-    <h1>Inicia sesión</h1>
-    <form class="row g-3 needs-validation" novalidate>
-      <input type="email" placeholder="Correo Electronico*">
-      <button class="submit">
-        Iniciar sesión
-      </button>
-    </form>
-    <p>¿No tienes una cuenta? <a href="">Crea una cuenta</a></p>
-
-    <div class="div-span"><p>-----------------------</p><p>OR</p><p>-----------------------</p></div>
-  
-    <div>
-      <div class="div-sessions">
-        <button class="div-session">
-          <img src="./imgs/icon-google.png" alt="icono de google">
-          <span>Iniciar con google</span>
+      <img src="./imgs/RODAI.png" alt="imagen de empresa RODAI" class="img-center">
+      <h1>Inicia sesión</h1>
+      <form class="row g-3 needs-validation" novalidate>
+        <input type="email" placeholder="Correo Electronico*">
+        <button class="submit">
+          Iniciar sesión
         </button>
-        <button class="div-session">
-          <img src="./imgs/icon-microsoft.png" alt="icono de google">
-          <span>Iniciar con microsoft</span>
-        </button>
+      </form>
+      <p>¿No tienes una cuenta? <a href="./registro.html">Crea una cuenta</a></p>
+
+      <div class="div-span">
+        <p>-----------------------</p>
+        <p>OR</p>
+        <p>-----------------------</p>
       </div>
-    </div>
-    <p class="text-footer"><a href="">Términos de uso</a> | <a href="">Politica de seguridad</a></p>
-  </div>
-</body>
 
+      <div>
+        <div class="div-sessions">
+          <!-- Botón de Google con el id correcto -->
+          <button class="div-session" id="google-register">
+            <img src="./imgs/icon-google.png" alt="icono de google">
+            <span>Iniciar con Google</span>
+          </button>
+
+          <!-- Botón de Microsoft (si luego lo usas) -->
+          <button class="div-session" id="microsoft-register">
+            <img src="./imgs/icon-microsoft.png" alt="icono de microsoft">
+            <span>Iniciar con Microsoft</span>
+          </button>
+
+        </div>
+      </div>
+      <p class="text-footer"><a href="">Términos de uso</a> | <a href="">Politica de seguridad</a></p>
+    </div>
+  </body>
 </html>

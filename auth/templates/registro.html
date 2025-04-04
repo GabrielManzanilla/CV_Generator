@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro e inicio de sesión</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase App (core SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js"></script>
+
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js"></script>
+
+</head>
+
+<body>
+  <div class="div-1200">
+
+    <img src="./imgs/RODAI.png" alt="imagen de empresa RODAI" class="img-center">
+    <h1>Registro de cuenta</h1>
+    <form class="row g-3 needs-validation" novalidate>
+      <input type="email" placeholder="Correo Electronico*">
+      <button class="submit">
+        Registrar cuenta
+      </button>
+    </form>
+    <p>¿Ya tienes una cuenta? <a href="./login.html">¡Inicia sesión aqui!</a></p>
+
+    <div class="div-span"><p>-----------------------</p><p>OR</p><p>-----------------------</p></div>
+  
+    <div>
+      <div class="div-sessions">
+        <button class="div-session">
+          <img src="./imgs/icon-google.png" alt="icono de google">
+          <span>Registrar con google</span>
+        </button>
+        <button class="div-session">
+          <img src="./imgs/icon-microsoft.png" alt="icono de google">
+          <span>Registrar con microsoft</span>
+        </button>
+      </div>
+    </div>
+    <p class="text-footer"><a href="">Términos de uso</a> | <a href="">Politica de seguridad</a></p>
+  </div>
+</body>
+
+</html>
