@@ -28,7 +28,7 @@ if (googleBtn) {
         alert("¡Inicio de sesión con Google exitoso!\nUsuario: " + user.email);
         console.log("Usuario autenticado:", user);
         // Redirige si quieres, por ejemplo:
-        window.location.href = 'paginainicio.html';
+        window.location.href = '/request_info';
       })
       .catch((error) => {
         console.error("Error con Google:", error);
