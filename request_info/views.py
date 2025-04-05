@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -8,10 +9,8 @@ def request_info(request):
 				personal_info = request.POST.get('personal_info')
 				fixed_info = request.POST.get('personal_fixes')
 				vacancy_info = request.POST.get('vacancy_info')
-				# Add more fields as needed
+				
 
-				# Here you can save the data to the database or perform other actions
-
-				#return render(request, 'request_info/success.html', {'name': name})
+				return redirect('/feedback') 
 
 		return render(request, 'form_page.html')

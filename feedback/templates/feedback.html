@@ -16,7 +16,9 @@
 			<b>Porcentaje de avance</b>
 			<div>Aqui ira el porcentaje de aceptacion</div>
 			<div>
-				<button id="update_results">Actualizar info</button>
+                <form action="{% url 'fix_feedback' %}" method="get">
+                    <button type="submit">Mejorar mi Curriculum</button>
+                </form>
 				<button>Descargar y Compartir</button>
 			</div>
 		</div>
@@ -163,10 +165,5 @@ button:hover{
 }
 
 </style>
-<script>
-	document.getElementById('update_results').addEventListener('click', function() {
-		window.locatiion('/feedback/update_results');
-		alert('Actualizando resultados');
-	});
-</script>
+
 </html>
