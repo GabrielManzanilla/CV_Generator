@@ -1,0 +1,15 @@
+<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Mi Proyecto{% endblock %}</title>
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

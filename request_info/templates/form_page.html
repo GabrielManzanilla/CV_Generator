@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+
+{% block title %}App1{% endblock %}
+
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <title>Formulario de Información</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         body {
             display: flex;
@@ -140,11 +141,15 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <button id="close-session">Cerrar sesión</button>
     <span id="loggedUserEmail"></span>
 
+=======
+    
+>>>>>>> cf186d8 (Add views)
     <form id="multiStepForm" method="post" action="{% url 'request_info' %}">
-
+        
 			{% csrf_token %}
         <!-- Indicador de progreso -->
         <div class="progress-indicator">
@@ -175,7 +180,7 @@
                 <button type="button" class="next-btn">Siguiente</button>
             </div>
         </div>
-
+        
         <!-- Paso 2 -->
         <div class="container" data-step="1">
             <h1>Ingrese sus Áreas de Mejora</h1>
@@ -201,7 +206,9 @@
                 <input type="submit" value="Enviar">
             </div>
         </div>
+
     </form>
+</body>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -211,7 +218,7 @@
             const prevButtons = document.querySelectorAll('.prev-btn');
             const progressSteps = document.querySelectorAll('.progress-step');
             let currentStep = 0;
-
+            
             // Mostrar solo el primer paso al cargar
             showStep(currentStep);
 
@@ -290,6 +297,7 @@
         });
     </script>
 
+<<<<<<< HEAD
 <script type="module">
     // Importación de los módulos necesarios de Firebase
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
@@ -347,3 +355,6 @@
   
 </body>
 </html>
+=======
+{% endblock %}
+>>>>>>> cf186d8 (Add views)

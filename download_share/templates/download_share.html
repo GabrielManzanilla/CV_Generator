@@ -1,42 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-	<div class="layout">
-		<div class="preview">
-			<div>Aqui va la preview</div>
-		</div>
-		<div class="options">
-			<button>Download</button>
-			<div class="buttons-container">
-				<ul>
-					<li>WA</li>
-					<li>E@</li>
-					<li>D</li>
-				</ul>
+<!-- templates/app1/index.html -->
+{% extends 'base.html' %}
+
+{% block title %}App1{% endblock %}
+
+{% block content %}
+		<div class="layout">
+			<div class="container_preview">
+				<div>Aqui va la preview</div>
+			</div>
+			<div class="description">
+				<h1>Tu Curriculum se ha generado con exito!!</h1>
+				<form action="" method="post">
+					<button type="submit">Descargar PDF</button>
+				</form>
+				<div class="share_options">
+					<h2>Compartir</h2>
+					<div>
+						<form action="post">
+							<button>Correo Electronico</button>
+						</form>
+						<form action="post">
+							<button>Whatsapp</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</body>
-<style>
-	body{
+		<style>
+			body{
 		height: 100vh;
 		width: 100%;
+
 	}
 	.layout {
-		margin: 1rem;
-		padding: 2rem;
-		display: flex;
-		flex-direction: column;
-		width: calc(100% - 4rem); /* Ajuste para el padding y margin */
-		height: 100%;
-	}
-	.preview{
-		border: 2px solid #000;
+    margin: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 100%;
+    width: calc(100% - 4rem); /* Ajuste para el padding y margin */
+    gap: 30px;
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.layout:hover {
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.layout .container_preview {
+    border: 2px solid #000;
     border-radius: 12px;
     flex: 2;
     min-width: 0;
@@ -45,9 +62,118 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 	}
-	.options{
-		display: absolute;
-		flex-direction: row;
+	
+	.layout .container_preview:hover {
+		border-color: #4CAF50;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
 	}
+	
+.layout .description {
+	flex: 1;
+	min-width: 0;
+	padding: 1.5rem;
+	background-color: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.layout .description:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Animaciones adicionales */
+@keyframes slideInFromLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInFromRight {
+	from {
+		opacity: 0;
+		transform: translateX(20px);
+    }
+    to {
+			opacity: 1;
+			transform: translateX(0);
+    }
+	}
+	
+	/* Aplicando animaciones a las secciones */
+	.container_preview {
+		animation: slideInFromLeft 0.6s ease-out 0.1s both;
+	}
+	
+	.description {
+    animation: slideInFromRight 0.6s ease-out 0.2s both;
+	}
+	
+	/* Mejoras para elementos internos */
+	.description h1 {
+		color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.description h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4CAF50, #64cc68);
+    border-radius: 3px;
+}
+
+.description p {
+    color: #5a6a7e;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+form button{
+	margin-top: 1rem;
+	background: #000 ;
+	color: #fff;
+	border-radius: 10px;
+	padding: 1rem;
+	border: none;
+	width: 100%;
+}
+form button:hover{
+	background-color: #4CAF50;
+}
+/* Efecto de hover para los iconos */
+.material-symbols-outlined {
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background-color: rgba(0, 123, 255, 0.1);
+    color: #4CAF50;
+}
+
+.material-symbols-outlined:hover {
+    background-color: rgba(0, 123, 255, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
 </style>
-</html>
+
+{% endblock %}
