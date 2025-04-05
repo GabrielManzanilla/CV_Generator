@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js"; // Añade esta línea para importar Firestore
 
 const firebaseConfig = {
   apiKey: "AIzaSyB9SxFqkYR55cEuGuXsVIbZBm8DBTp5td4",
@@ -37,32 +38,31 @@ if (googleBtn) {
   });
 }
 
-//02. Sesion con correo y contraseña
+//02. creacion de usuario con usuario y contraseña
 
+const signUp = document.getElementById('submitSignUp');
 
-const signIn = document.getElementById('submitSignIn');
-
-
-signIn.addEventListener('submit', (event) => {
+signUp.addEventListener('submit', (event) => {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const auth = getAuth();
+    const email = document.getElementById('email-create').value;
+    const password = document.getElementById('password-create').value;
 
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            alert('Inicio de sesión exitoso', 'signInMessage');
-            const user = userCredential.user;
-            localStorage.setItem('loggedInUserId', user.uid);
-            window.location.href = 'paginainicio.html';
-        })
-        .catch((error) => {
+    const auth = getAuth();
+    const db = getFirestore();
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then(cred => {
+          alert ("Usuario creado exitosamente")
+        }).catch(error => {
             const errorCode = error.code;
-            if (errorCode === 'auth/invalid-credential') {
-                alert('Correo o contraseña incorrectos', 'signInMessage');
-            } else {
-                alert('La cuenta no existe', 'signInMessage');
+
+            if (errorCode == "auth/email-already-in-use") {
+              alert("El correo ya esta en uso");
+            } else if (errorCode == "auth/invalid-email") {
+              alert("El correo no es valido");
+            } else if ("auth/weak-password") {
+              alert("La contraseña debe contener al menos 6 caracteres");              
             }
         });
-});
 
+});
