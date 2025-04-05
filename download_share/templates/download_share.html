@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div class="layout">
+		<div class="preview">
+			<div>Aqui va la preview</div>
+		</div>
+		<div class="options">
+			<button>Download</button>
+			<div class="buttons-container">
+				<ul>
+					<li>WA</li>
+					<li>E@</li>
+					<li>D</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	body{
+		height: 100vh;
+		width: 100%;
+	}
+	.layout {
+		margin: 1rem;
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		width: calc(100% - 4rem); /* Ajuste para el padding y margin */
+		height: 100%;
+	}
+	.preview{
+		border: 2px solid #000;
+    border-radius: 12px;
+    flex: 2;
+    min-width: 0;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	}
+	.options{
+		display: absolute;
+		flex-direction: row;
+	}
+</style>
+</html>

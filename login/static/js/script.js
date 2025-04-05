@@ -54,7 +54,7 @@ signIn.addEventListener('submit', (event) => {
             alert('Inicio de sesión exitoso', 'signInMessage');
             const user = userCredential.user;
             localStorage.setItem('loggedInUserId', user.uid);
-            window.location.href = 'paginainicio.html';
+            window.location.href = '/request_info';
         })
         .catch((error) => {
             const errorCode = error.code;
