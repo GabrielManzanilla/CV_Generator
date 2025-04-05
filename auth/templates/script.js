@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB9SxFqkYR55cEuGuXsVIbZBm8DBTp5td4",
@@ -33,3 +33,29 @@ if (googleBtn) {
       });
   });
 }
+
+const signIn = document.getElementById('submitSignIn');
+
+
+signIn.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            alert('Inicio de sesión exitoso', 'signInMessage');
+            const user = userCredential.user;
+            localStorage.setItem('loggedInUserId', user.uid);
+            window.location.href = 'paginainicio.html';
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            if (errorCode === 'auth/invalid-credential') {
+                alert('Correo o contraseña incorrectos', 'signInMessage');
+            } else {
+                alert('La cuenta no existe', 'signInMessage');
+            }
+        });
+});

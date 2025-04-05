@@ -6,11 +6,12 @@
   }
   
   .div-1200 {
+    padding: 20px 0px;
     max-width: 100%;
     width: 1200px;
     margin: auto;
     text-align: center;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +41,9 @@
   }
   
   input {
-    width: 100%;
+    display: block;
+    min-width: 80%;
+    max-width: 100%;
     padding: 15px;
     font-size: 18px;
     border: 1px solid #979595;
@@ -57,6 +60,7 @@
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 80%;
   }
   
   .submit:hover {
@@ -99,6 +103,7 @@
     border: 1px solid #979595;
     flex-wrap: wrap;
     padding: 10px;
+    width: 100%;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: auto;

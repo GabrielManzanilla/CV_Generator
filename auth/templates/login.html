@@ -13,8 +13,10 @@
 
       <img src="./imgs/RODAI.png" alt="imagen de empresa RODAI" class="img-center">
       <h1>Inicia sesión</h1>
-      <form class="row g-3 needs-validation" novalidate>
-        <input type="email" placeholder="Correo Electronico*">
+      <form class="row g-3 needs-validation" id="submitSignIn" novalidate>
+        <input type="email" placeholder="Correo Electronico*" id="email">
+        <input type="password" placeholder="password*" id="password">
+
         <button class="submit">
           Iniciar sesión
         </button>
@@ -29,18 +31,23 @@
 
       <div>
         <div class="div-sessions">
-          <!-- Botón de Google con el id correcto -->
+          <!-- Botón de Google -->
           <button class="div-session" id="google-register">
             <img src="./imgs/icon-google.png" alt="icono de google">
             <span>Iniciar con Google</span>
           </button>
 
-          <!-- Botón de Microsoft (si luego lo usas) -->
+          <!-- Botón de correo -->
           <button class="div-session" id="microsoft-register">
-            <img src="./imgs/icon-microsoft.png" alt="icono de microsoft">
-            <span>Iniciar con Microsoft</span>
+            <img src="./imgs/icon-mail.png" alt="icono de mail">
+            <span>Iniciar con correo</span>
           </button>
 
+          <!-- Botón de llamada -->
+          <button class="div-session" id="microsoft-register">
+            <img src="./imgs/icon-llamada.png" alt="icono de llamada">
+            <span>Iniciar con llamada</span>
+          </button>
         </div>
       </div>
       <p class="text-footer"><a href="">Términos de uso</a> | <a href="">Politica de seguridad</a></p>

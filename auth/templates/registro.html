@@ -6,12 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro e inicio de sesión</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Firebase App (core SDK) -->
-  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js"></script>
-
-  <!-- Firebase Authentication -->
-  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js"></script>
-
+  <script type="module" src="./script.js"></script>
 </head>
 
 <body>
@@ -20,8 +15,10 @@
     <img src="./imgs/RODAI.png" alt="imagen de empresa RODAI" class="img-center">
     <h1>Registro de cuenta</h1>
     <form class="row g-3 needs-validation" novalidate>
-      <input type="email" placeholder="Correo Electronico*">
-      <button class="submit">
+      <input type="email" placeholder="Correo Electronico*" id="email-create">
+      <input type="password" placeholder="Contraseña*" id="password-create">
+
+      <button class="submit" type="button">
         Registrar cuenta
       </button>
     </form>
@@ -31,13 +28,22 @@
   
     <div>
       <div class="div-sessions">
-        <button class="div-session">
+        <!-- Botón de Google -->
+        <button class="div-session" id="google-register">
           <img src="./imgs/icon-google.png" alt="icono de google">
-          <span>Registrar con google</span>
+          <span>Registrar con Google</span>
         </button>
-        <button class="div-session">
-          <img src="./imgs/icon-microsoft.png" alt="icono de google">
-          <span>Registrar con microsoft</span>
+
+        <!-- Botón de correo -->
+        <button class="div-session" id="microsoft-register">
+          <img src="./imgs/icon-mail.png" alt="icono de mail">
+          <span>Registrar con correo</span>
+        </button>
+
+        <!-- Botón de llamada -->
+        <button class="div-session" id="microsoft-register">
+          <img src="./imgs/icon-llamada.png" alt="icono de llamada">
+          <span>Registrar con llamada</span>
         </button>
       </div>
     </div>
